@@ -1,0 +1,63 @@
+== Introduction
+This is semestral work for https://bilakniha.cvut.cz/en/predmet6701806.html[Architecture of Computer Systems course] at https://fit.cvut.cz/en[FIT CTU].
+
+The goal of this work was to create a program in C++ that effectively uses cache during convolution of PPM (Portable PixMap format) image and calculates its grayscale histogram values.
+
+== Running the program
+
+Compilation can be done using `make compile` command. This creates `main` executable.
+
+You need to provide path to binary PPM Image (P6 magic number) as an argument when you run this program.
+
+Example
+`./main vit_normal.ppm`
+
+Output image is save as `output.ppm` and grayscale histogram values are save in file `output.txt`.
+
+== Convolution mask
+
+.For each channel in every pixel
+1. Take currently processed channel
+2. Multiply its value by 5
+3. Subtract currently processed channel from pixels to the left, right, above and below.
+
+If any of the required pixels are missing then just copy the value of pixel.
+
+So the mask looks like this:
+
+[options="autowidth"]
+|===
+|0|-1|0 
+|-1|5|-1
+|0|-1|0
+|===
+
+
+
+== PPM image
+
+Images need to be in binary Portable PixMap format (PPM) = magic number P6. This format uses 3 channels for pixel (red, green and blue) and encodes each channel in 1 byte.
+There are 3 images included in this repository - `test.ppm`, `vit_normal.ppm` and `vit_small.ppm`.
+
+.To run program with these images and run cache analysis you can use the following make commands:
+* `make run` uses `vit_normal.ppm` image
+* `make test` uses `test.ppm` image
+* `make small` uses `vit_small.ppm` image
+
+== Grayscale histogram
+
+Grayscale pixel are converted from RGB using this expression: ``Y = round(0.2126*R + 0.7152*G + 0.0722*B)``.
+
+Result of this program are frequencies that represent data for this histogram saved in `output.txt` file:
+
+[options="autowidth"]
+|===
+|Interval|0 to 50|51 to 101|102 to 152|153 to 203|204 to 255
+|Frequency:|    |    |    |    |   
+|===
+
+
+== Evaluation of program
+To somewhat evaluate how this program uses cache you can use `script.sh`. It calculates cost and then it converts cost to points between 0 and 10.
+This isn't precisely how the program was evaluated in the course, but it gives some idea if you use cache better or worse. I didn't make this script.
+

@@ -1,0 +1,10 @@
+main
+a.out
+cachegrind.out.*
+output.txt
+output.ppm
+
+cmake-build-debug/*
+.idea/
+.bak
+.code/
