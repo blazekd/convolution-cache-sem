@@ -1,7 +1,7 @@
 == Introduction
 This is semestral work for https://bilakniha.cvut.cz/en/predmet6701806.html[Architecture of Computer Systems course] at https://fit.cvut.cz/en[FIT CTU].
 
-The goal of this work was to create a program in C++ that effectively uses cache during convolution of PPM (Portable PixMap format) image and calculates its grayscale histogram values.
+The goal of this work was to create a program in C++ that effectively uses cache during convolution of https://en.wikipedia.org/wiki/Netpbm#File_formats[PPM (Portable PixMap format)] image and calculates its grayscale histogram values.
 
 == Running the program
 
@@ -36,7 +36,7 @@ So the mask looks like this:
 
 == PPM image
 
-Images need to be in binary Portable PixMap format (PPM) = magic number P6. This format uses 3 channels for pixel (red, green and blue) and encodes each channel in 1 byte.
+Images need to be in binary https://en.wikipedia.org/wiki/Netpbm#File_formats[Portable PixMap format (PPM)] = magic number P6. This format uses 3 channels for pixel (red, green and blue) and encodes each channel in 1 byte.
 There are 3 images included in this repository - `test.ppm`, `vit_normal.ppm` and `vit_small.ppm`.
 
 .To run program with these images and run cache analysis you can use the following make commands:
